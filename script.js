@@ -11,8 +11,27 @@ const edgeMargin = 10; // Adjust this value to increase or decrease the margin
 
 // Initial position and speed for the piccolo
 let posX, posY;
-let speedX = 2 + Math.random() * 2; // Random horizontal speed
-let speedY = 2 + Math.random() * 2; // Random vertical speed
+// let speedX = 1 + Math.random() * 2; // Random horizontal speed
+// let speedY = 1 + Math.random() * 2; // Random vertical speed
+
+// Set speeds based on device type
+function setPiccoloSpeed() {
+    if (window.innerWidth <= 600) {
+        // Slower speed for mobile devices
+        speedX = 1 + Math.random(); // 1 to 2 units per frame
+        speedY = 1 + Math.random();
+    } else {
+        // Faster speed for larger screens
+        speedX = 2 + Math.random() * 2; // 2 to 4 units per frame
+        speedY = 2 + Math.random() * 2;
+    }
+}
+
+// Call the function initially to set the speed based on the current device
+setPiccoloSpeed();
+
+// Adjust speed if the screen is resized (optional)
+window.addEventListener('resize', setPiccoloSpeed);
 
 // Function to center piccolo initially
 function centerPiccolo() {
@@ -92,10 +111,10 @@ function resetTimer() {
     timerButton.textContent = 'Start Timer';
 }
 
-// Change color every 4 seconds
+// Change color every 3.5 seconds
 setInterval(() => {
     piccolo.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
-}, 4000);
+}, 3500);
 
 // Add event listeners
 piccolo.addEventListener('click', () => {
