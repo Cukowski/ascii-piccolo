@@ -6,9 +6,6 @@ const timer = document.getElementById('timer');
 const timerButton = document.getElementById('timer-button');
 const resetButton = document.getElementById('reset-button');
 
-// Define constants for margin space from the edges
-const edgeMargin = 10; // Adjust this value to increase or decrease the margin
-
 // Initial position and speed for the piccolo
 let posX, posY;
 // let speedX = 1 + Math.random() * 2; // Random horizontal speed
@@ -18,8 +15,8 @@ let posX, posY;
 function setPiccoloSpeed() {
     if (window.innerWidth <= 600) {
         // Slower speed for mobile devices
-        speedX = 1 + Math.random(); // 1 to 2 units per frame
-        speedY = 1 + Math.random();
+        speedX = 0.5 + Math.random(); // 1 to 2 units per frame
+        speedY = 0.5 + Math.random();
     } else {
         // Faster speed for larger screens
         speedX = 2 + Math.random() * 2; // 2 to 4 units per frame
@@ -52,10 +49,10 @@ function movePiccolo() {
     posY += speedY;
 
     // Check boundaries with margin
-    if (posX + piccolo.offsetWidth + edgeMargin >= window.innerWidth || posX <= edgeMargin) {
+    if (posX + piccolo.offsetWidth >= window.innerWidth || posX <= 0) {
         speedX *= -1; // Reverse horizontal direction
     }
-    if (posY + piccolo.offsetHeight + edgeMargin >= window.innerHeight || posY <= edgeMargin) {
+    if (posY + piccolo.offsetHeight >= window.innerHeight || posY <= 0) {
         speedY *= -1; // Reverse vertical direction
     }
 

@@ -71,7 +71,7 @@ body {
 /* Responsive scaling for mobile */
 @media (max-width: 600px) {
     #piccolo {
-        font-size: 10px;
+        font-size: 7px;
     }
 
     #flute-player {
