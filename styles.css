@@ -18,6 +18,8 @@ body {
 /* Piccolo Styling for Free Movement */
 #piccolo {
     position: absolute;
+    top: 0; 
+    left: 0;
     font-size: 14px;
     cursor: pointer;
     transition: color 0.2s ease-in-out;
@@ -30,6 +32,10 @@ body {
     left: 5%;
     font-size: 14px;
     color: lightblue;
+}
+
+#flute-player:hover {
+    cursor: pointer;
 }
 
 /* Clock and Timer Styling */
@@ -65,7 +71,7 @@ body {
 /* Responsive scaling for mobile */
 @media (max-width: 600px) {
     #piccolo {
-        font-size: 10px;
+        font-size: 5%;
     }
 
     #flute-player {
@@ -73,7 +79,11 @@ body {
     }
 
     #clock {
-        font-size: 20px;
+        font-size: 30px;
+    }
+
+    #timer {
+        font-size: 24px;
     }
 
     #timer-button, #reset-button {

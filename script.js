@@ -1,32 +1,46 @@
 // Select elements
 const piccolo = document.getElementById('piccolo');
+const flute_player = document.getElementById('flute-player');
 const clock = document.getElementById('clock');
 const timer = document.getElementById('timer');
 const timerButton = document.getElementById('timer-button');
 const resetButton = document.getElementById('reset-button');
 
-// Set initial position and speed for piccolo within the viewport
-// let posX = window.innerWidth / 2;
-// let posY = window.innerHeight / 2;
-let posX = window.innerWidth;
-let posY = window.innerHeight;
+// Define constants for margin space from the edges
+const edgeMargin = 10; // Adjust this value to increase or decrease the margin
+
+// Initial position and speed for the piccolo
+let posX, posY;
 let speedX = 2 + Math.random() * 2; // Random horizontal speed
 let speedY = 2 + Math.random() * 2; // Random vertical speed
 
-// Move piccolo across the viewport and bounce on edges
+// Function to center piccolo initially
+function centerPiccolo() {
+    // Calculate piccolo dimensions after rendering
+    const piccoloWidth = piccolo.offsetWidth;
+    const piccoloHeight = piccolo.offsetHeight;
+
+    // Center position with margin
+    posX = (window.innerWidth - piccoloWidth) / 2;
+    posY = (window.innerHeight - piccoloHeight) / 2;
+
+    piccolo.style.transform = `translate(${posX}px, ${posY}px)`;
+}
+
+// Move piccolo across the viewport with boundary checks and margin
 function movePiccolo() {
     posX += speedX;
     posY += speedY;
 
-    // Boundary checks for viewport
-    if (posX + piccolo.offsetWidth >= window.innerWidth || posX <= 0) {
-        speedX *= -1;
+    // Check boundaries with margin
+    if (posX + piccolo.offsetWidth + edgeMargin >= window.innerWidth || posX <= edgeMargin) {
+        speedX *= -1; // Reverse horizontal direction
     }
-    if (posY + piccolo.offsetHeight >= window.innerHeight || posY <= 0) {
-        speedY *= -1;
+    if (posY + piccolo.offsetHeight + edgeMargin >= window.innerHeight || posY <= edgeMargin) {
+        speedY *= -1; // Reverse vertical direction
     }
 
-    // Apply new position within the viewport
+    // Apply new position
     piccolo.style.transform = `translate(${posX}px, ${posY}px)`;
     requestAnimationFrame(movePiccolo);
 }
@@ -78,13 +92,22 @@ function resetTimer() {
     timerButton.textContent = 'Start Timer';
 }
 
+// Change color every 4 seconds
+setInterval(() => {
+    piccolo.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+}, 4000);
+
 // Add event listeners
 piccolo.addEventListener('click', () => {
     piccolo.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+});
+flute_player.addEventListener('click', () => {
+    flute_player.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
 });
 timerButton.addEventListener('click', toggleTimer);
 resetButton.addEventListener('click', resetTimer);
 
 // Initialize functions
-movePiccolo();
-updateClock();
+centerPiccolo(); // Center piccolo initially
+movePiccolo();   // Start piccolo movement
+updateClock();   // Start clock
