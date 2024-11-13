@@ -26,7 +26,7 @@ body {
 }
 
 /* Flute Player Position */
-#flute-player {
+#flute-player, #playButton {
     position: absolute;
     bottom: 5%;
     left: 5%;
@@ -36,6 +36,20 @@ body {
 
 #flute-player:hover {
     cursor: pointer;
+}
+
+/* Dance */
+@keyframes dance {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    25% { transform: translate(-50%, -50%) rotate(10deg); }
+    50% { transform: translate(-50%, -50%) rotate(0deg); }
+    75% { transform: translate(-50%, -50%) rotate(-10deg); }
+    100% { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+.dancing {
+    display: block;
+    animation: dance 1s infinite;
 }
 
 /* Clock and Timer Styling */

@@ -27,7 +27,26 @@
              |      \  \
             /|\     ~  ~
         </pre>
+    <audio id="audio" src="audio.mp3"></audio>
     </div>
+
+    <!-- Click to Dance Script -->
+    <script>
+        let clickCount = 0;
+
+        document.getElementById('flute-player').addEventListener('click', function() {
+            clickCount++;
+            if (clickCount === 3) {
+                document.getElementById('audio').play();
+                document.getElementById('flute-player').classList.add('dancing');
+                const div = document.getElementById('flute-player');
+                setInterval(() => {
+                    div.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                }, 800);
+                clickCount = 0; // Reset the count after playing the audio
+            }
+        });
+    </script>
 
     <!-- Clock and Timer Section -->
     <div id="clock-timer">
