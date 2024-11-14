@@ -15,12 +15,12 @@ let posX, posY;
 function setPiccoloSpeed() {
     if (window.innerWidth <= 600) {
         // Slower speed for mobile devices
-        speedX = 0.5 + Math.random(); // 1 to 2 units per frame
+        speedX = 0.5 + Math.random(); 
         speedY = 0.5 + Math.random();
     } else {
         // Faster speed for larger screens
-        speedX = 2 + Math.random() * 2; // 2 to 4 units per frame
-        speedY = 2 + Math.random() * 2;
+        speedX = 1 + Math.random() * 2; 
+        speedY = 1 + Math.random() * 2;
     }
 }
 
